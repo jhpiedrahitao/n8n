@@ -113,7 +113,7 @@ export class LmChatSambaNova implements INodeType {
 				options: [
 					{
 						displayName: 'Maximum Number of Tokens',
-						name: 'maxTokensToSample',
+						name: 'maxTokens',
 						default: 4096,
 						description: 'The maximum number of tokens to generate in the completion',
 						type: 'number',
@@ -137,7 +137,7 @@ export class LmChatSambaNova implements INodeType {
 
 		const modelName = this.getNodeParameter('model', itemIndex) as string;
 		const options = this.getNodeParameter('options', itemIndex, {}) as {
-			maxTokensToSample?: number;
+			maxTokens?: number;
 			temperature: number;
 		};
 
@@ -148,7 +148,7 @@ export class LmChatSambaNova implements INodeType {
 				baseURL: 'https://api.sambanova.ai/v1',
 				httpAgent: getHttpProxyAgent(),
 			},
-			maxTokens: options.maxTokensToSample,
+			maxTokens: options.maxTokens,
 			temperature: options.temperature,
 			callbacks: [new N8nLlmTracing(this)],
 			onFailedAttempt: makeN8nLlmFailedAttemptHandler(this),

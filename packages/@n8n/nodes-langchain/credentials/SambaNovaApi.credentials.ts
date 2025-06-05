@@ -34,6 +34,7 @@ export class SambaNovaApi implements ICredentialType {
 
 	test: ICredentialTestRequest = {
 		request: {
+			method: 'GET',
 			baseURL: 'https://api.sambanova.ai/v1',
 			url: '/models',
 		},
